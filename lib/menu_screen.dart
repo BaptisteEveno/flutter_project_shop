@@ -47,11 +47,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       NavigationRailDestination(
                         icon: Icon(Icons.home),
-                        label: Text('Home'),
+                        label: Text('Magasin'),
                       ),
                       NavigationRailDestination(
                         icon: Icon(Icons.shopping_basket),
-                        label: Text('Cart'),
+                        label: Text('Panier'),
                       ),
                     ],
                     selectedIndex: selectedIndex,
@@ -64,7 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 Expanded(
                   child: Container(
-                    color: Theme.of(context).colorScheme.primaryContainer,
+                    color: Colors.orange[200],
                     child: page,
                   ),
                 ),

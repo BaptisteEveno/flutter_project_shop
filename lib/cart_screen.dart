@@ -8,15 +8,15 @@ class CartScreen extends StatefulWidget {
 class _CartScreenState extends State<CartScreen> {
   List<CartItem> cartItems = [
     CartItem(
-      image: '../assets/pp.jpg',
-      name: 'Produit 1',
-      price: 25.00,
+      image: '../assets/iphone.jpg',
+      name: 'Iphone 14',
+      price: 800.00,
       quantity: 0,
     ),
     CartItem(
-      image: '../assets/pp.jpg',
-      name: 'Produit 2',
-      price: 30.00,
+      image: '../assets/ps5.jpg',
+      name: 'PS5',
+      price: 475.00,
       quantity: 0,
     ),
   ];
@@ -135,7 +135,7 @@ class _CartScreenState extends State<CartScreen> {
           ),
           Text(
             item.quantity.toString(),
-            style: const TextStyle(fontSize: 16),
+            style: const TextStyle(fontSize: 15),
           ),
           IconButton(
             icon: const Icon(Icons.add),
@@ -149,7 +149,7 @@ class _CartScreenState extends State<CartScreen> {
           Text(
             'Total : \€${item.totalPrice.toStringAsFixed(2)}',
             style: const TextStyle(
-              fontSize: 16,
+              fontSize: 15,
               fontWeight: FontWeight.bold,
             ),
           ),

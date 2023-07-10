@@ -24,7 +24,7 @@ class ProductCard extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(6),
               child: const Text(
-                'Nom du produit qui peut parfois être un peu long',
+                'Nom du produit',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 18,
@@ -38,7 +38,7 @@ class ProductCard extends StatelessWidget {
                   Icon(Icons.star),
                   Icon(Icons.star),
                   Icon(Icons.star),
-                  Icon(Icons.star),
+                  Icon(Icons.star_outline),
                   Icon(Icons.star_outline),
                 ],
               ),
@@ -46,7 +46,7 @@ class ProductCard extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(6),
               child: const Text(
-                'Description du produit qui peut faire un certain nombre de lignes alors autant lui laisser un peu de place',
+                'Description du produit',
                 textAlign: TextAlign.left,
               ),
             ),
@@ -56,7 +56,7 @@ class ProductCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Text(
-                    '49,00 €',
+                    '99,95 €',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
@@ -64,8 +64,13 @@ class ProductCard extends StatelessWidget {
                   ),
                   IconButton(
                     icon: const Icon(Icons.add_shopping_cart),
-                    tooltip: 'Add to cart',
-                    onPressed: () {},
+                    tooltip: 'Ajouter au panier',
+                    onPressed: () {
+                      const snackBar = SnackBar(
+                        content: Text('Produit ajouté au panier'),
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    },
                   ),
                 ],
               ),

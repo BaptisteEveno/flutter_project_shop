@@ -12,10 +12,10 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Shop',
+      title: 'Flutter Shop M1',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
       ),
       home: const HomeScreen(title: 'Flutter Shop Home'),
     );
