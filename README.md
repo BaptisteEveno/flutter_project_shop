@@ -1,6 +1,6 @@
 # flutter_project_shop
+ Projet d'école pour l'UE "Progressive Web Application".
 
-A new Flutter project.
 
 ## Getting Started
 
