@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class CartScreen extends StatefulWidget {
   @override
@@ -6,20 +8,7 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
-  List<CartItem> cartItems = [
-    CartItem(
-      image: '../assets/iphone.jpg',
-      name: 'Iphone 14',
-      price: 800.00,
-      quantity: 0,
-    ),
-    CartItem(
-      image: '../assets/ps5.jpg',
-      name: 'PS5',
-      price: 475.00,
-      quantity: 0,
-    ),
-  ];
+  List<CartItem> cartItems = [];
 
   int get totalArticles {
     int total = 0;
@@ -35,6 +24,28 @@ class _CartScreenState extends State<CartScreen> {
       total += item.totalPrice;
     }
     return total;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    fetchData();
+  }
+
+  Future<void> fetchData() async {
+    final response = await http.get(Uri.parse('https://dummyjson.com/carts/1'));
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      final products = data['products'];
+      print(data);
+
+      setState(() {
+        cartItems = List<CartItem>.from(products.map((product) => CartItem.fromJson(product)));
+      });
+      print(cartItems);
+    } else {
+      throw Exception('Failed to load data');
+    }
   }
 
   @override
@@ -175,4 +186,14 @@ class CartItem {
   double get totalPrice {
     return price * quantity;
   }
+
+  factory CartItem.fromJson(Map<String, dynamic> json) {
+    return CartItem(
+      image: json['image'] ?? '../assets/iphone.jpg',
+      name: json['title'] ?? '',
+      price: json['price']?.toDouble() ?? 0.0,
+      quantity: json['quantity'] ?? 0,
+    );
+  }
+
 }
