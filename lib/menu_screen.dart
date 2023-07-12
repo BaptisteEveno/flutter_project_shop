@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_project_shop/shop_screen.dart';
 import 'package:flutter_project_shop/account_screen.dart';
 import 'package:flutter_project_shop/cart_screen.dart';
-
+import 'package:flutter_project_shop/shop_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key, required this.title});
@@ -47,11 +46,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       NavigationRailDestination(
                         icon: Icon(Icons.home),
-                        label: Text('Magasin'),
+                        label: Text('Home'),
                       ),
                       NavigationRailDestination(
                         icon: Icon(Icons.shopping_basket),
-                        label: Text('Panier'),
+                        label: Text('Cart'),
                       ),
                     ],
                     selectedIndex: selectedIndex,
@@ -64,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 Expanded(
                   child: Container(
-                    color: Colors.orange[200],
+                    color: Theme.of(context).colorScheme.primaryContainer,
                     child: page,
                   ),
                 ),
