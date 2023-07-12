@@ -37,12 +37,10 @@ class _CartScreenState extends State<CartScreen> {
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
       final products = data['products'];
-      print(data);
 
       setState(() {
         cartItems = List<CartItem>.from(products.map((product) => CartItem.fromJson(product)));
       });
-      print(cartItems);
     } else {
       throw Exception('Failed to load data');
     }
@@ -54,48 +52,50 @@ class _CartScreenState extends State<CartScreen> {
       appBar: AppBar(
         title: const Text('Mon Panier'),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  'Mon Panier',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'Mon Panier',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                Text(
-                  '$totalArticles articles',
-                  style: const TextStyle(
-                    fontSize: 16,
+                  Text(
+                    '$totalArticles articles',
+                    style: const TextStyle(
+                      fontSize: 16,
+                    ),
                   ),
-                ),
-                Text(
-                  'Prix total : \€${totalPrice.toStringAsFixed(2)}',
-                  style: const TextStyle(
-                    fontSize: 16,
+                  Text(
+                    'Prix total : \€${totalPrice.toStringAsFixed(2)}',
+                    style: const TextStyle(
+                      fontSize: 16,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          const Divider(height: 1.0, color: Colors.grey),
-          Expanded(
-            child: ListView.builder(
+            const Divider(height: 1.0, color: Colors.grey),
+            ListView.builder(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
               itemCount: cartItems.length,
               itemBuilder: (context, index) {
                 return buildCartItem(cartItems[index]);
               },
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
+
   }
 
   Widget buildCartItem(CartItem item) {
@@ -104,8 +104,8 @@ class _CartScreenState extends State<CartScreen> {
       child: Row(
         children: [
           Container(
-            width: 80,
-            height: 80,
+            width: 60,
+            height: 60,
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(item.image),
